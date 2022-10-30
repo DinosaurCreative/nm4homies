@@ -1,0 +1,42 @@
+.side-menu {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  &__hidden {
+    width: 0;
+    left: -40px;
+  };
+  &__open-btn {
+    margin: 30px auto auto 30px;
+  };
+  &__background {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.089);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    &_hidden {
+      width: 0;
+    };
+  };
+  &__link {
+    display: flex;
+    color: #fff;
+    margin-bottom: 20px;
+    transition: all .3s;
+    text-decoration: none;
+    &:hover {
+      color: #fff;
+      opacity: 70%;
+    };
+    &__link-icon {
+      margin: auto 15px auto;
+    }
+  };
+  &__nav {
+    margin-left: 20px;
+    margin-top: 30px;
+  }
+}

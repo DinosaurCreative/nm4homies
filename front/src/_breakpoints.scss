@@ -1,0 +1,61 @@
+// Желательно не добавлять новых и использовать только эти(брать максимально близкие по значению).
+
+@mixin _1350 {
+  @media (max-width: 1350px) {
+    @content;
+  }
+}
+
+@mixin _1200 {
+  @media (max-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin _992 {
+  @media (max-width: 992px) {
+    @content;
+  }
+}
+
+@mixin _768 {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin _580 {
+  @media (max-width: 580px) {
+    @content;
+  }
+}
+
+@mixin _480 {
+  @media (max-width: 480px) {
+    @content;
+  }
+}
+
+@mixin _428 {
+  @media (max-width: 428px) {
+    @content;
+  }
+}
+
+@mixin _375 {
+  @media (max-width: 375px) {
+    @content;
+  }
+}
+
+@mixin _320 {
+  @media (max-width: 320px) {
+    @content;
+  }
+}
+
+@mixin _240 {
+  @media (max-width: 240px) {
+    @content;
+  }
+}

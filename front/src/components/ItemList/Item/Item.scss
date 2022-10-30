@@ -1,0 +1,47 @@
+.item {
+  outline: 1px dashed;
+  max-height: fit-content;
+  line-height: normal;
+  &__content {
+    padding: 10px 30px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 6px;
+  };
+  &__inner-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 13px;
+    height: fit-content;
+  };
+  &__title {
+    font-weight: 500;
+    font-size: 20px;
+    display: flex;
+    align-self: start;
+    margin-bottom: 0
+  };
+  &__color {
+    grid-area: color;
+    font-weight: 700;
+    font-size: 20px;
+    display: flex;
+    align-self: start;
+    margin-bottom: 0
+  };
+  &__size {
+    font-weight: 900;
+    font-size: 40px;
+    display: flex;
+    align-self: start;
+    margin-bottom: 0;
+    height: auto
+  };
+  &__number {
+    margin-bottom: 0
+  };
+  &__date {
+    margin-bottom: 0
+  }
+}

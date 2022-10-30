@@ -1,0 +1,14 @@
+.add-items-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 450px;
+  width: 100%;
+  margin: auto;
+  row-gap: 20px;
+  &__input {
+    &::placeholder {
+      color: #374254;
+    }
+  }
+
+}

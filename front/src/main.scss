@@ -1,0 +1,271 @@
+@import './_breakpoints.scss';
+@import "font";
+@import "../node_modules/@coreui/coreui/scss/coreui.scss";
+@import "./normalize.css";
+
+@for $i from 1 through 100 {
+  $percent: 1% * $i;
+  $pixel: 1px * $i;
+  .w-#{$i} {
+    width: $percent;
+  }
+
+  .mb-#{$i} {
+    margin-bottom: $pixel;
+  }
+
+  .mt-#{$i} {
+    margin-top: $pixel;
+  }
+
+  .mr-#{$i} {
+    margin-right: $pixel;
+  }
+
+  .ml-#{$i} {
+    margin-left: $pixel;
+  }
+
+  .m-#{$i} {
+    margin: $pixel;
+  }
+
+  .p-#{$i} {
+    padding: $pixel;
+  }
+
+  .pt-#{$i} {
+    padding-top: $pixel;
+  }
+
+  .pb-#{$i} {
+    padding-bottom: $pixel;
+  }
+
+  .pl-#{$i} {
+    padding-left: $pixel;
+  }
+
+  .pr-#{$i} {
+    padding-right: $pixel;
+  }
+}
+
+.d-flex {
+  display: flex;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+[type="search"] {
+  -webkit-appearance: searchfield;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: #fff;
+  font-family: $main-font-family;
+  font-weight: 100;
+}
+
+label {
+  font-family: $main-font-family;
+}
+
+.default-btn {
+  font-family: 'Roboto', sans-serif;
+  width: 10em;
+  background: #1773a1;
+  border-radius: 5px;
+  border: 2px solid #5eb5e9;
+  margin: 15px 15px;
+  padding: 3px 10px;
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  transition: all 0.3s;
+  white-space: pre;
+  font-weight: 600;
+
+  &:hover {
+    background: #166590;
+    border-color: #4b90b9;
+  }
+
+  &:active {
+    background: #13597f;
+    border-color: #3d7697;
+  }
+
+  &:disabled {
+    background: #808080;
+    color: #f1f1f1 !important;
+    border-color: #f1f1f1;
+    cursor: not-allowed;
+  }
+}
+
+.remove-btn {
+  outline: none;
+  border: 0;
+  background: 0 0 !important;
+  color: #ff434b !important;
+  text-shadow: 0 -1px 0 #CD0707, -1px 0 0 #CD0707, 0 1px 0 #CD0707, 1px 0 0 #CD0707 !important;
+  transition: all 0.2s ease-in;
+  padding: 0 4px;
+
+  &:hover {
+    cursor: pointer;
+    color: #bf2200 !important;
+    text-shadow: 0 -1px 0 #AA0101, -1px 0 0 #AA0101, 0 1px 0 #AA0101, 1px 0 0 #AA0101 !important;
+  }
+
+  &:active {
+    color: #9b0018 !important;
+    text-shadow: 0 -1px 0 #d10101, -1px 0 0 #d10101, 0 1px 0 #d10101, 1px 0 0 #d10101 !important;
+    outline: none;
+  }
+
+  &:disabled {
+    outline: none;
+  }
+}
+
+.edit-btn {
+  height: 24px;
+  width: 24px;
+  font-size: 16px;
+  color: rgba(63, 155, 191, 0.8);
+  background-color: rgba(0, 0, 0, 0.0);
+  border: 0px solid #000000;
+  padding: 0px 5px 0px 0px;
+  outline: none;
+
+  &:hover {
+    color: rgba(63, 155, 191, 1);
+    cursor: pointer;
+  }
+
+  &:active {
+    outline: none;
+  }
+}
+
+.rnd-btn {
+  border-radius: 15px;
+  padding: 5px;
+  font-size: 0.8rem;
+  min-width: 40px;
+}
+
+.pay-btn.rnd-btn {
+  background: #f03802;
+  border: 2px solid #f03802;
+
+  &:hover {
+    background-color: #c81000;
+  }
+}
+
+//Page common styles
+.page-content {
+  margin: -15px 0 0;
+  position: relative;
+}
+
+.left-widget__wrapper {
+  width: 66%;
+  min-height: 80vh;
+  display: flex;
+  @include _480 {
+    margin: 0 0 0;
+  }
+  @include _1200 {
+    width: 100%;
+  }
+}
+
+
+//Arrow icons (pagination, progress widget, etc)
+.body-arrow {
+  width: 12%;
+  cursor: pointer;
+  margin-right: 15px;
+
+  .icon-bg {
+    fill: #5eb5e9;
+  }
+
+  .icon-border {
+    fill: #1773a1;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.body-arrow--disabled {
+  cursor: not-allowed;
+
+  .icon-bg {
+    fill: #808080;
+  }
+
+  .icon-border {
+    fill: #f1f1f1;
+  }
+}
+
+.scrollable {
+  max-height: 85vh;
+  overflow-y: auto;
+
+  // only for firefox 64+
+  scrollbar-width: auto;
+  scrollbar-color: rgba(255, 255, 255, 0.2) rgba(0, 0, 0, 0);
+
+  // only for webkit (obviously)
+  &::-webkit-scrollbar {
+    width: 6px;
+    background: none;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.2);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    &:active {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+.sticky-side {
+  @extend .scrollable;
+  position: sticky;
+  top: 3rem;
+
+  &--no-scroll {
+    overflow-y: hidden;
+  }
+}
+
+button[disabled],
+input[disabled] {
+  color: #999 !important;
+}

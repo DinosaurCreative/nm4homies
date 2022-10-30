@@ -1,0 +1,32 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 220px);
+  height: fit-content;
+  grid-column-gap: 1px;
+  grid-row-gap: 1px;
+  justify-content: center;
+  margin: auto;
+  &__button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 120px;
+    margin: 40px auto;
+    padding-bottom: 120px
+  };
+  &__button {
+    width: 120px;
+  };
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-self: self-start;
+    margin-top: 50px;
+  }
+}
+
+@media print {    
+  .no-print, .no-print * {
+      display: none !important;
+  }
+}
