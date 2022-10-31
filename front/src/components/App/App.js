@@ -3,10 +3,20 @@ import { Routes, Route } from "react-router-dom";
 import { ItemList } from '../ItemList/ItemList';
 import { AddItemsForm } from '../AddItemsForm/AddItemsForm';
 import { SideMenu } from '../SideMenu/SideMenu';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { getAllStickerPacks, login, checkToken, signout } from '../../api/api';
 
 function App() {
   const [itemType, setItemType] = useState();
+  const [userLoogged, setUserLogged] = useState(false);
+
+  useEffect(() => {
+    // signout()
+    // login({password: "4229421!"})
+      // .then(() => setUserLogged(true))
+      // .catch(() => console.log("Авторизуйтесь"))
+  },[])
+
   return (
     <div className="App">
       <SideMenu setItemType={setItemType}/>

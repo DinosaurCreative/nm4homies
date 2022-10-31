@@ -1,5 +1,5 @@
 .side-menu {
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
@@ -12,7 +12,6 @@
   };
   &__background {
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.089);
     top: 0;
     bottom: 0;
     left: 0;

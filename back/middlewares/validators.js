@@ -33,6 +33,13 @@ const createStickerPackValidation = celebrate({
   }),
 });
 
+const createUserValidation = celebrate({
+  body: Joi.object().keys({
+    email: Joi.string().required(),
+    password: Joi.string().required(),
+  }),
+});
+
 const patchStickerPackValidation = celebrate({
   body: Joi.object().keys({
     title: Joi.string(),
@@ -51,5 +58,6 @@ module.exports = {
   deleteStickerPackValidation,
   createStickerPackValidation,
   patchStickerPackValidation,
-  loginValidation
+  loginValidation,
+  createUserValidation
 };

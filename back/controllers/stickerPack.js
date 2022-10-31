@@ -1,14 +1,18 @@
 const StickerPack = require('../models/stickerPack');
+const User = require('../models/userSchema');
+const bcrypt = require('bcryptjs');
+
 const BadRequestError = require('../errors/BadRequestError');
 const NotFoundError = require('../errors/NotFoundError');
 const ForbiddenError = require('../errors/ForbiddenError');
-const bcrypt = require('bcryptjs');
+
 const jwt = require('jsonwebtoken');
 const {
   stickerPackMissing,
   pathMissing,
   badValue,
-  email
+  email,
+  usersIdMissing
 } = require('../utils/constants');
 const { devSecretKey } = require('../utils/config');
 
@@ -87,7 +91,8 @@ module.exports.patchStickerPack = (req, res, next) => {
 
 module.exports.login = (req, res, next) => {
   const { password } = req.body;
-  StickerPack.findUserByCredentials({ password, email })
+
+  User.findUserByCredentials({ password, email })
     .then((user) => {
       const token = jwt.sign({ _id: user._id }, devSecretKey, { expiresIn: '7d' });
       res.cookie('_id', token, {
@@ -103,10 +108,51 @@ module.exports.login = (req, res, next) => {
     });
 };
 
+module.exports.createUser = (req, res, next) => {
+  const {
+    email, password,
+  } = req.body;
+  if (!password) {
+    throw next(new BadRequestError(`${pathMissing} 'password'.`));
+  }
+  bcrypt.hash(password, 10)
+    .then((hash) => {
+      User.create({
+        email, password: hash,
+      })
+        .then((user) => res.send(user))
+        .catch((err) => {
+          if (err.message.includes('is required')) {
+            const pathName = err.message.split('`')[1];
+            return next(new BadRequestError(`${pathMissing} '${pathName}'.`));
+          } if (err.code === 11000 || err.name === 'MongoError') {
+            return next(new ConflictError('emailTaken'));
+          }
+          return next(err);
+        });
+    }).catch((err) => next(err));
+};
+
+module.exports.getCurrentUser = (req, res, next) => {
+
+  User.findById(req.user)
+    .orFail(new NotFoundError(usersIdMissing))
+    .then((user) => res.send(user))
+    .catch((err) => {
+      console.log('first')
+      if (err.name === 'CastError') {
+        next(new BadRequestError(badValue));
+        return;
+      }
+      next(err);
+    });
+};
+
+
 module.exports.signOut = (req, res, next) => {
-  StickerPack.clearCookie('_id', {
+  res.clearCookie('_id', {
     sameSite: 'None',
     secure: true,
   }).send({ message: 'Куки удалены' });
-  next();
+  // next();
 };

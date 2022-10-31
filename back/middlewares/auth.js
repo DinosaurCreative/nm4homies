@@ -7,16 +7,17 @@ function extractBearerToken(header) {
 
 module.exports = (req, res, next) => {
   const authorization = req.headers.cookie;
+
   if (!authorization || !authorization.startsWith('_id=')) {
-    next(new UnauthorizedError('Авторизуйтесь'));
-    return;
+    return next(new UnauthorizedError('Авторизуйтесь'));
   }
   const token = extractBearerToken(authorization);
+  let payload;
   try {
-    jwt.verify(token, 'super-strong-secret');
+    payload = jwt.verify(token, 'super-strong-secret');
   } catch (err) {
     next(new UnauthorizedError('Ошибка авторизации'));
   }
-
+  req.user = payload;
   next();
 };

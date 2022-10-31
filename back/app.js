@@ -1,15 +1,16 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
-
 const app = express();
-
+const cors = require('./middlewares/cors');
 const errorHandler = require('./middlewares/errorHandler');
 const stickerRouter = require('./routes/stickerRouter');
 const NotFoundError = require('./errors/NotFoundError');
 const { dataBaseAdress, PORT } = require('./utils/config');
 const { connected, notConnected, wrongPath } = require('./utils/constants');
 const auth = require('./middlewares/auth');
+app.use(cors);
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -22,7 +23,7 @@ mongoose.connect(dataBaseAdress, {
 
 app.use('/', stickerRouter);
 
-app.use('*', auth, () => {
+app.use('*', /* auth, */ () => {
   throw new NotFoundError(wrongPath);
 });
 

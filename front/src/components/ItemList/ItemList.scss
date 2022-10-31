@@ -19,6 +19,7 @@
   };
   &__container {
     display: flex;
+    row-gap: 80px;
     flex-direction: column;
     align-self: self-start;
     margin-top: 50px;

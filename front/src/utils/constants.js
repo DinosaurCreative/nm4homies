@@ -1,4 +1,4 @@
-const thirdValue = [
+export const thirdValue = [
   {
     date: "05.05.22",
     title: "Hoodie NINJA",
@@ -54,7 +54,7 @@ const thirdValue = [
     size: "S",
   },
 ]
-const secondValue = [
+export const secondValue = [
   {
     date: "05.05.22",
     title: "Hoodie NINJA",
@@ -158,7 +158,253 @@ const secondValue = [
     size: "S",
   },
 ]
-const firstValue = [
+export const firstValue = [
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
+  {
+    date: "05.05.22",
+    title: "Hoodie NINJA",
+    color: "RED",
+    size: "S",
+  },
   {
     date: "05.05.22",
     title: "Hoodie NINJA",
@@ -302,5 +548,3 @@ export const initialValue = {
 }
 
 export const testValueArr = [{title: "firstValue", firstValue}, {title: "secondValue", secondValue}, {title: "thirdValue", thirdValue}];
-
-export default { thirdValue, secondValue, firstValue}
