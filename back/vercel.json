@@ -1,10 +1,8 @@
 
 {
-  "version": 2,
-  "name": "NM4Homies",
   "builds": [
     {
-      "src": "app.js",
+      "src": "./app.js",
       "use": "@vercel/node"
     }
   ],
