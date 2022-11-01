@@ -2,28 +2,62 @@ import './App.scss';
 import { Routes, Route } from "react-router-dom";
 import { ItemList } from '../ItemList/ItemList';
 import { AddItemsForm } from '../AddItemsForm/AddItemsForm';
+import { Login } from '../Login/Login';
 import { SideMenu } from '../SideMenu/SideMenu';
+import  { Popup } from '../Popup/Popup';
+import { DescriptionPopup } from '../DescriptionPopup/DescriptionPopup';
 import { useEffect, useState } from 'react';
-import { getAllStickerPacks, login, checkToken, signout } from '../../api/api';
+import { getAllStickerPacks, checkToken } from '../../api/api';
+import { CSpinner } from '@coreui/react';
 
 function App() {
-  const [itemType, setItemType] = useState();
-  const [userLoogged, setUserLogged] = useState(false);
+  const [isLogged, setIsLogged] = useState(false);
+  const [tokenCheck, setTokenCheck] = useState(true);
+  const [stickers, setStickers] = useState([]);
+  const [currentSticker, setCurrentSticker] = useState({});
+  const [arrNumber, setArrNumber] = useState();
+  const [popupvisible, setPopupVisible] = useState(false);
+  const [message, setMessage] = useState('');
+  const [fail, setFail] = useState(false);
 
   useEffect(() => {
-    // signout()
-    // login({password: "4229421!"})
-      // .then(() => setUserLogged(true))
-      // .catch(() => console.log("Авторизуйтесь"))
+    checkToken()
+      .then(() => {
+        setIsLogged(true);
+        getAllStickerPacks()
+        .then(e => setStickers(e.data.data))
+        .catch(e => console.log(e))
+      })
+      .catch(e => setIsLogged(false))
+      .finally(() => setTokenCheck(false));
   },[])
 
   return (
     <div className="App">
-      <SideMenu setItemType={setItemType}/>
-      <Routes>
-        <Route exact path="/" element={<AddItemsForm />} />
-        <Route path="/item-list" element={<ItemList  value={itemType}/>}/>
-      </Routes>
+      <Popup show={popupvisible} fail={fail}/>
+      <DescriptionPopup message={message} setMessage={setMessage}/>
+      {tokenCheck && <CSpinner className='spinner' variant="grow"/>}
+    {!tokenCheck && <>
+      {!isLogged && <Login setIsLogged={setIsLogged} setTokenCheck={setTokenCheck} setPopupVisible={setPopupVisible} setFail={setFail}/>}
+      {isLogged && <>
+        <SideMenu setIsLogged={setIsLogged} 
+                  items={stickers} 
+                  setItems={setCurrentSticker}
+                  setArrNumber={setArrNumber}
+                  />
+        <Routes>
+          <Route exact path="/" element={<AddItemsForm setStickers={setStickers} 
+                                                       setTokenCheck={setTokenCheck} 
+                                                       setPopupVisible={setPopupVisible}
+                                                       setMessage={setMessage}/>} />
+          {!!stickers.length && <Route path="/item-list" element={<ItemList values={stickers} 
+                                                                            valNum={arrNumber} 
+                                                                            setStickers={setStickers} 
+                                                                            setPopupVisible={setPopupVisible}
+                                                                            setMessage={setMessage}/>}/>}
+        </Routes>
+      </>}
+    </>}
     </div>
   );
 }

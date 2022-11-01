@@ -1,0 +1,29 @@
+.popup {
+  background-color: rgba(0, 0, 0, 0.736); 
+  position: fixed;
+  border-radius: 15px;
+  left: 450px;
+  padding: 10px;
+  bottom: -60px;
+  transition: all .3s ease-in-out;
+  
+  &_visible {
+    bottom: 60px;
+  }
+  &__img {
+    background: url(../../images/success.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 40px;
+    height: 40px;
+  }
+  &__img_fail {
+    background: url(../../images/error.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 40px;
+    height: 40px;
+  }
+}

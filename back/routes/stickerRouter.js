@@ -22,11 +22,11 @@ const {
   createUserValidation,
  } = require('../middlewares/validators');
 
-stickerRouter.delete('/sticker-pack/:id?', /* auth, */ deleteStickerPackValidation, deleteStickerPack);
-stickerRouter.post('/sticker-pack', /* auth, */ createStickerPackValidation, createStickerPack);
+stickerRouter.delete('/sticker-pack/:id?', auth, deleteStickerPackValidation, deleteStickerPack);
+stickerRouter.post('/sticker-pack', auth, createStickerPackValidation, createStickerPack);
 stickerRouter.get('/sticker-packs', auth, getStickerPacksValidation, getStickerPacks);
-stickerRouter.get('/sticker-pack/:id?', /* auth, */ getStickerPackValidation, getStickerPack);
-stickerRouter.patch('/sticker-pack/:id?', /* auth, */ patchStickerPackValidation, patchStickerPack);
+stickerRouter.get('/sticker-pack/:id?', auth, getStickerPackValidation, getStickerPack);
+stickerRouter.patch('/sticker-pack/:id?', auth, patchStickerPackValidation, patchStickerPack);
 
 stickerRouter.get('/user', auth, getCurrentUser);
 stickerRouter.post('/signin', loginValidation, login);

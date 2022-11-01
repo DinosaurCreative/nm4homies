@@ -3,11 +3,6 @@ const mainUrl = process.env.REACT_APP_MAIN_URL;
 
 
 const myFetch = async (path, options) =>{
-  const headers = {
-    'accept': 'application/json',
-    'content-type': 'application/json',
-  }
-
   const response = await axios.request({
     baseURL: mainUrl + path,
     data: options?.body,
@@ -20,17 +15,17 @@ const myFetch = async (path, options) =>{
 };
 export const checkToken = () => myFetch('/user');
 
-export const deleteStickerPack = body => myFetch('/sticker-pack', { method: 'DELETE' });
+export const deleteStickerPack = id => myFetch(`/sticker-pack/${id}`, { method: 'DELETE'});
 
 export const changeStickerPack = body => myFetch('/sticker-pack', { method: 'PATCH' });
 
 export const getAllStickerPacks = body => myFetch('/sticker-packs');
 
-export const login = body => myFetch('/signin', { method: 'POST',  body });
+export const login = password => myFetch('/signin', { method: 'POST', body: {password} });
 
 export const signout = () => myFetch('/signout', { method: 'DELETE' });
 
 export const getStickerPack = body => myFetch('/sticker-pack');
 
-export const createStickerPack = body => myFetch('/sticker-packs', { method: 'POST' })
+export const createStickerPack = body => myFetch('/sticker-pack', { method: 'POST', body })
 

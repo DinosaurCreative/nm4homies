@@ -35,7 +35,7 @@ module.exports.createStickerPack = (req, res, next) => {
     size,
     title,
     date,
-    discription,
+    description,
   } = req.body;
   
   StickerPack.create({
@@ -44,7 +44,7 @@ module.exports.createStickerPack = (req, res, next) => {
     size,
     title,
     date,
-    discription,
+    description,
   })
     .then(stickerPack => res.send({ data: stickerPack }))
     .catch(err => {
@@ -59,6 +59,7 @@ module.exports.createStickerPack = (req, res, next) => {
 };
 
 module.exports.getStickerPack = (req, res, next) => {
+
   StickerPack.findById(req.query.id)
     .orFail(new NotFoundError(stickerPackMissing))
     .then(sticker => res.send({ data: sticker }))
@@ -66,10 +67,10 @@ module.exports.getStickerPack = (req, res, next) => {
 };
 
 module.exports.deleteStickerPack = (req, res, next) => {
-  StickerPack.findById(req.query.id) 
+  StickerPack.findById(req.params.id) 
     .orFail(new NotFoundError(stickerPackMissing))
-    .then(res => {
-      StickerPack.findByIdAndRemove(req.query.id)
+    .then(() => {
+      StickerPack.findByIdAndRemove(req.params.id)
         .then(() => res.send({ message: `Файл удален!` }))
         .catch((err) => next(err));
     })
@@ -134,12 +135,10 @@ module.exports.createUser = (req, res, next) => {
 };
 
 module.exports.getCurrentUser = (req, res, next) => {
-
   User.findById(req.user)
     .orFail(new NotFoundError(usersIdMissing))
     .then((user) => res.send(user))
     .catch((err) => {
-      console.log('first')
       if (err.name === 'CastError') {
         next(new BadRequestError(badValue));
         return;
@@ -154,5 +153,4 @@ module.exports.signOut = (req, res, next) => {
     sameSite: 'None',
     secure: true,
   }).send({ message: 'Куки удалены' });
-  // next();
 };

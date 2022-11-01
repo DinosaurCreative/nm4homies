@@ -5,3 +5,15 @@
   justify-content: center;
   height: 100%;
 }
+
+@media print {
+  .app-print{
+    
+  }
+}
+
+.spinner{
+  margin: auto;
+  width: 100px;
+  height: 100px;
+}

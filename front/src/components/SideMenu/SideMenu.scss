@@ -3,12 +3,15 @@
   top: 0;
   bottom: 0;
   left: 0;
+  width: 300px;
+  z-index: 1;
   &__hidden {
     width: 0;
     left: -40px;
   };
   &__open-btn {
     margin: 30px auto auto 30px;
+    justify-content: left;
   };
   &__background {
     position: absolute;
@@ -26,10 +29,19 @@
     margin-bottom: 20px;
     transition: all .3s;
     text-decoration: none;
+    text-align: left;
     &:hover {
       color: #fff;
-      opacity: 70%;
+      opacity: 60%;
     };
+    &:first-of-type > .side-menu__nav-icon {
+      color: #009cb6;
+    }
+    &:first-of-type {
+      margin: 20px auto 50px;
+      width: 100%;
+      color: #009cb6;
+    }
     &__link-icon {
       margin: auto 15px auto;
     }
@@ -37,5 +49,19 @@
   &__nav {
     margin-left: 20px;
     margin-top: 30px;
+    padding-right: 20px;
   }
+  &__logout-btn {
+    margin-bottom: 30px;
+  }
+  &__logout-btn_hidden {
+    opacity: 0;
+    transition: all .2s;
+  }
+  &__nav-icon {
+    margin-top: auto;
+    margin-bottom: auto;
+    color: #009cb6;
+  }
+
 }

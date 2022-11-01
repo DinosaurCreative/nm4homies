@@ -1,0 +1,18 @@
+.login {
+  margin: auto;
+  &__form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+  }
+  &__row {
+    display: flex;
+    flex-direction: column;
+  }
+  &__label{
+    width: auto;
+  }
+  &__input::placeholder {
+    text-align: center;
+  }
+}

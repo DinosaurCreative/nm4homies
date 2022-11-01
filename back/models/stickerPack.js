@@ -26,7 +26,7 @@ const stickerPackSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  discprition: {
+  description: {
     type: String,
   },
 }, { versionKey: false });

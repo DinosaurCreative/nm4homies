@@ -11,15 +11,14 @@
     flex-direction: row;
     justify-content: center;
     column-gap: 120px;
-    margin: 40px auto;
-    padding-bottom: 120px
+    margin: 10px auto 0;
   };
   &__button {
     width: 120px;
   };
   &__container {
     display: flex;
-    row-gap: 80px;
+    row-gap: 90px;
     flex-direction: column;
     align-self: self-start;
     margin-top: 50px;

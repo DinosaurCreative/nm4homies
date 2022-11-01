@@ -2,11 +2,13 @@
   outline: 1px dashed;
   max-height: fit-content;
   line-height: normal;
+  text-align: left;
+  // letter-spacing: 2px;
   &__content {
     padding: 10px 30px;
     display: flex;
     flex-direction: column;
-    row-gap: 6px;
+    row-gap: 5px;
   };
   &__inner-content {
     display: flex;
@@ -20,28 +22,48 @@
     font-size: 20px;
     display: flex;
     align-self: start;
-    margin-bottom: 0
+    margin-bottom: 2px;
+    overflow-wrap: anywhere;
+    &_large {
+      letter-spacing: -0.5px;
+      line-height: 1.28;
+      font-size: 18px
+    }
   };
   &__color {
     grid-area: color;
-    font-weight: 700;
+    font-weight: 600;
     font-size: 20px;
     display: flex;
     align-self: start;
-    margin-bottom: 0
+    margin-bottom: 0;
+    &_large {
+      align-self: flex-end;
+      padding-bottom: 4px;
+      font-size: 24px;
+    }
   };
   &__size {
-    font-weight: 900;
+    font-weight: 800;
     font-size: 40px;
     display: flex;
     align-self: start;
     margin-bottom: 0;
-    height: auto
+    height: auto;
+    &_large {
+      align-self: center;
+    }
   };
   &__number {
-    margin-bottom: 0
+    margin-bottom: 0;
+    padding-left: 1px;
   };
   &__date {
-    margin-bottom: 0
+    margin-bottom: 0;
+  }
+  &__color-size-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
 }

@@ -1,0 +1,25 @@
+.description-popup {
+  border: 2px solid rgba(44, 56, 74, 0.95);
+  position: fixed;
+  min-height: 100px;
+  width: 300px;
+  left: 50px;
+  bottom: 120px;
+  border-radius: 14px;
+  padding: 20px ;
+  display: flex;
+  flex-direction: column;
+  background: #9ca5b1eb;
+  z-index: 2;
+  justify-content: space-around;
+  &__message {
+    margin: 0;
+    color: rgba(44, 56, 74, 0.95);
+  }
+  &__close-btn {
+    color: red;
+    position: absolute;
+    top: -25px;
+    right: -25px;
+  } 
+}
