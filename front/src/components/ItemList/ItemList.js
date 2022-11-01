@@ -36,12 +36,11 @@ export const ItemList = ({ values, valNum, setStickers, setPopupVisible, setMess
         } , 1000)
         getAllStickerPacks()
           .then(res=> setStickers(res.data.data))
-          .catch(e => console.log(e))
+          .catch(e => console.log(e));
       })
       .then(() => navigate('/'))
-      .catch((e) => console.log(e))
-      
-  }
+      .catch((e) => console.log(e));  
+  };
 
   useEffect(() => {
     const id = searchParams.get('id') ?? values[valNum]._id;
@@ -69,9 +68,9 @@ export const ItemList = ({ values, valNum, setStickers, setPopupVisible, setMess
           size: values[+data.number].size,
           title: values[+data.number].title,
           color: values[+data.number].color,
-        })
+        });
         t++
-      }
+      };
         lenght = lenght - 21;
         response.push(arr);
     }
@@ -90,14 +89,14 @@ export const ItemList = ({ values, valNum, setStickers, setPopupVisible, setMess
   return (
     <div className='grid__container'>
       <div className='grid__button-container no-print'>
-        <CButton className="grid__button" color="warning" onClick={handleDelete}>Удалить</CButton>
-        <CButton className="grid__button" color="light" onClick={handlePrint}>Печатать</CButton>
+        <CButton className='grid__button' color='warning' onClick={handleDelete}>Удалить</CButton>
+        <CButton className='grid__button' color='light' onClick={handlePrint}>Печатать</CButton>
       </div>
       {separate.map((item ,index ) => item ? (
-          <div className="grid" key={index}>
+          <div className='grid' key={index}>
             {item?.map((i, indx) => prepareItems(i, indx))}
           </div>
-        ) : ""
+        ) : ''
       )}
 
     </div>

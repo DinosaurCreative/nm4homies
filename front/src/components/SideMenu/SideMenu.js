@@ -13,15 +13,15 @@ export const SideMenu = ({ setIsLogged, items, setItems, setArrNumber, setMessag
     if (e.target.id === 'open') {
       setMenuHidden(!menuHidden);
       return eventListenerHandler(e.target.id);
-    }
+    };
     if(e.key === 'Escape' ||
     e.target.id === 'close' || 
     e.target.id === 'background' || 
     e.target.getAttribute('name') === 'link') {
       setMenuHidden(true);
       eventListenerHandler('close');
-    }
-  }
+    };
+  };
   const signOutHandler = () => {
     signout()
       .then(() => {
@@ -30,24 +30,23 @@ export const SideMenu = ({ setIsLogged, items, setItems, setArrNumber, setMessag
       })
       .catch((e) => {
         console.log(e);
-      })
-  }
+      });
+  };
   
   const eventListenerHandler = (action) => {
     if(action === 'open') {
       document.addEventListener('click', hideMenuHandler);
       document.addEventListener('keydown', hideMenuHandler);
       setMessage('');
-    }
+    };
     if(action === 'close') {
       document.removeEventListener('click', hideMenuHandler);
       document.removeEventListener('keydown', hideMenuHandler);
-    }
-  }
+    };
+  };
   const openStickerPack = e => {
     setArrNumber(e.target.id);
-    setItems({number: e.target.id});
-  }
+  };
   return (  
     <>
     <CSidebarToggler className={`side-menu side-menu__open-btn no-print ${!menuHidden && 'side-menu__hidden'} no-print` } onClick={hideMenuHandler}>
@@ -86,5 +85,5 @@ export const SideMenu = ({ setIsLogged, items, setItems, setArrNumber, setMessag
       </CSidebar>
     </div>
   </>
-  )
-}
+  );
+};

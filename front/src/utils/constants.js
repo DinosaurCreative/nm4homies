@@ -3,5 +3,4 @@ export const initialValue = {
   color: '',
   size: '',
   quantity: '',
-}
-
+};

@@ -9,7 +9,7 @@ const myFetch = async (path, options) =>{
     method: options?.method,
     withCredentials: true,
     credentials: 'include',
-  })
+  });
 
   return response;
 };
@@ -27,5 +27,5 @@ export const signout = () => myFetch('/signout', { method: 'DELETE' });
 
 export const getStickerPack = body => myFetch('/sticker-pack');
 
-export const createStickerPack = body => myFetch('/sticker-pack', { method: 'POST', body })
+export const createStickerPack = body => myFetch('/sticker-pack', { method: 'POST', body });
 
