@@ -71,7 +71,7 @@ export const AddItemsForm = ({setStickers, setTokenCheck, setPopupVisible, setMe
         </CCol>
         <CCol md={10}>
           <CFormSelect className='add-items-form__input' aria-label='Default select example' value={values.size} required onChange={setValHandler} id='size' >
-            <option value=''>Выберите размер</option>
+            <option value=''>Размер</option>
             <option value='3XL'>3XL</option>
             <option value='2XL'>2XL</option>
             <option value='XL'>XL</option>

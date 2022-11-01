@@ -22,11 +22,11 @@ const userSchema = new mongoose.Schema({
 
 userSchema.statics.findUserByCredentials = function ({email, password}) {
   if (!email) {
-    return new BadRequestError(`${pathMissing} "email".`);
+    return new BadRequestError(`${pathMissing} 'email'.`);
   } if (!password) {
-    return new BadRequestError(`${pathMissing} "password".`);
+    return new BadRequestError(`${pathMissing} 'password'.`);
   }
-  return this.findOne({ email: "hellonm4@mail.ru" }).select('+password')
+  return this.findOne({ email: 'hellonm4@mail.ru' }).select('+password')
   .then((user) => {
       if (!user) {
         return Promise.reject(new UnauthorizedError(badEmailOrPass));
@@ -45,7 +45,7 @@ function toJSON() {
   const obj = this.toObject();
   delete obj.password;
   return obj;
-}
+};
 
 userSchema.methods.toJSON = toJSON;
 
