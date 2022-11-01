@@ -1,6 +1,6 @@
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 220px);
+  grid-template-columns: repeat(3, 265px);
   height: fit-content;
   grid-column-gap: 1px;
   grid-row-gap: 1px;
@@ -11,17 +11,15 @@
     flex-direction: row;
     justify-content: center;
     column-gap: 120px;
-    margin: 10px auto 0;
+    margin: 40px auto 50px;
   };
   &__button {
     width: 120px;
   };
   &__container {
     display: flex;
-    row-gap: 90px;
     flex-direction: column;
     align-self: self-start;
-    margin-top: 50px;
   }
 }
 
