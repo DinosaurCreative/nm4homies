@@ -1,14 +1,14 @@
 .item {
   outline: 1px dashed;
-  max-height: fit-content;
+  height: 146px;
   line-height: normal;
   text-align: left;
-  // letter-spacing: 2px;
   &__content {
     padding: 10px 30px;
     display: flex;
     flex-direction: column;
-    row-gap: 5px;
+    justify-content: space-between;
+    height: 100%;
   };
   &__inner-content {
     display: flex;
@@ -39,8 +39,9 @@
     margin-bottom: 0;
     &_large {
       align-self: flex-end;
-      padding-bottom: 4px;
-      font-size: 24px;
+      padding-bottom: 5.5px;
+      font-size: 15.5px;
+      padding-left: 24px;
     }
   };
   &__size {
@@ -51,7 +52,7 @@
     margin-bottom: 0;
     height: auto;
     &_large {
-      align-self: center;
+      align-self: end;
     }
   };
   &__number {

@@ -22,11 +22,10 @@ export const AddItemsForm = ({setStickers, setTokenCheck, setPopupVisible, setMe
     e.stopPropagation();
   }
   setValidated(true)
-    const date = moment().format('DD.MM.YY');
-
+    const date = moment().format('DD MMMM');
     if (form.checkValidity()) {
       setTokenCheck(true);
-      createStickerPack({...values, date})
+      createStickerPack({...values, date: date.slice(0,6) + '.'})
         .then(()=> {
           setPopupVisible(true);
           setTimeout(()=>{

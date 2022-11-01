@@ -16,7 +16,7 @@ function App() {
   const [stickers, setStickers] = useState([]);
   const [currentSticker, setCurrentSticker] = useState({});
   const [arrNumber, setArrNumber] = useState();
-  const [popupvisible, setPopupVisible] = useState(false);
+  const [popupVisible, setPopupVisible] = useState(false);
   const [message, setMessage] = useState('');
   const [fail, setFail] = useState(false);
 
@@ -34,7 +34,7 @@ function App() {
 
   return (
     <div className="App">
-      <Popup show={popupvisible} fail={fail}/>
+      <Popup show={popupVisible} fail={fail}/>
       <DescriptionPopup message={message} setMessage={setMessage}/>
       {tokenCheck && <CSpinner className='spinner' variant="grow"/>}
     {!tokenCheck && <>
@@ -44,6 +44,7 @@ function App() {
                   items={stickers} 
                   setItems={setCurrentSticker}
                   setArrNumber={setArrNumber}
+                  setMessage={setMessage}
                   />
         <Routes>
           <Route exact path="/" element={<AddItemsForm setStickers={setStickers} 

@@ -10,9 +10,10 @@ import { deleteStickerPack, getAllStickerPacks } from '../../api/api';
 export const ItemList = ({ values, valNum, setStickers, setPopupVisible, setMessage }) => {
   let [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
-  const [data, setData] = useState({})
+  const [data, setData] = useState({});
   
   const handlePrint = () => {
+    setMessage('');
     window.print();
   }
   
@@ -26,20 +27,18 @@ export const ItemList = ({ values, valNum, setStickers, setPopupVisible, setMess
   }, []);
   
   const handleDelete = () => {
+    setMessage('');
     deleteStickerPack(searchParams.get('id'))
       .then(() => {
         setPopupVisible(true);
         setTimeout(()=>{
-          setPopupVisible(false)
+          setPopupVisible(false);
         } , 1000)
         getAllStickerPacks()
-          .then(res=> {
-            setStickers(res.data.data)
-          })
+          .then(res=> setStickers(res.data.data))
+          .catch(e => console.log(e))
       })
-      .then(() => {
-        navigate('/');
-      })
+      .then(() => navigate('/'))
       .catch((e) => console.log(e))
       
   }
@@ -47,14 +46,14 @@ export const ItemList = ({ values, valNum, setStickers, setPopupVisible, setMess
   useEffect(() => {
     const id = searchParams.get('id') ?? values[valNum]._id;
     const number = searchParams.get('number') ?? valNum;
-    setMessage(values[valNum]?.description ?? values[number]?.description)
+    setMessage(values[valNum]?.description ?? values[number]?.description);
     setSearchParams({id, number: valNum || number});
     setData({
       id,
       number: number || valNum,
-    })
+    });
 
-  }, [values, valNum])
+  }, [values, valNum]);
 
   const separate = useMemo(() => {  
     const response = [];
@@ -73,11 +72,11 @@ export const ItemList = ({ values, valNum, setStickers, setPopupVisible, setMess
         })
         t++
       }
-        lenght = lenght - 21
+        lenght = lenght - 21;
         response.push(arr);
     }
-    return response
-  }, [values, valNum, data.number])
+    return response;
+  }, [values, valNum, data.number]);
 
   const prepareItems = (item, index) => (
     <Item key={index}
@@ -86,13 +85,13 @@ export const ItemList = ({ values, valNum, setStickers, setPopupVisible, setMess
       title={item.title}
       color={item.color}
       size={item.size.toUpperCase()} />
-  )
+  );
 
   return (
     <div className='grid__container'>
       <div className='grid__button-container no-print'>
-        <CButton className="grid__button" color="danger" onClick={handleDelete}>Удалить</CButton>
-        <CButton className="grid__button" color="secondary" onClick={handlePrint}>Печатать</CButton>
+        <CButton className="grid__button" color="warning" onClick={handleDelete}>Удалить</CButton>
+        <CButton className="grid__button" color="light" onClick={handlePrint}>Печатать</CButton>
       </div>
       {separate.map((item ,index ) => item ? (
           <div className="grid" key={index}>
@@ -102,5 +101,5 @@ export const ItemList = ({ values, valNum, setStickers, setPopupVisible, setMess
       )}
 
     </div>
-  )
-}
+  );
+};
