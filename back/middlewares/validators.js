@@ -29,7 +29,7 @@ const createStickerPackValidation = celebrate({
     date: Joi.string().required(),
     size: Joi.string().required(),
     quantity: Joi.number().required(),
-    description: Joi.string(),
+    description: Joi.any(),
   }),
 });
 
