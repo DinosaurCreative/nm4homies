@@ -5,7 +5,9 @@ const allowedCors = [
   'http://localhost:3001',
   'https://localhost:3001',
   'https://nm4homies-dinosaurcreative.vercel.app',
-  'https://nm4homies.vercel.app'
+  'https://nm4homies.vercel.app',
+  'https://nm4h.vercel.app',
+  'https://nm4h-dinosaurcreative.vercel.app'
 ];
 
 module.exports = (req, res, next) => {
