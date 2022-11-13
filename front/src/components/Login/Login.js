@@ -4,25 +4,17 @@ import { useState } from 'react'
 import { login } from '../../api/api'
 
 
-export const Login = ({setIsLogged, setTokenCheck, setFail, setPopupVisible}) => {
+export const Login = ({setIsLogged, setTokenCheck, warningMessageHandler}) => {
   const [pass, setPass] = useState('');
- 
   const onSubmitClick = (e) => {
     e.preventDefault();
     setTokenCheck(true);
     login(pass)
-      .then(() => setIsLogged(true))
-      .catch(({response}) => {
-        console.log(response.data.message);
-        setFail(true);
-        setPopupVisible(true);
-        setTimeout(() => {
-          setPopupVisible(false);
-          setFail(false);
-        }, 2000);
-      })
-      .finally(() => setTokenCheck(false));
+    .then(() => setIsLogged(true))
+    .catch((err) => warningMessageHandler(err.response.data.message))
+    .finally(() => setTokenCheck(false));
   }
+
   return (
     <div className='login'>
       <CForm className='login__form' type='submit' onSubmit={onSubmitClick}>

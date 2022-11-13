@@ -1,5 +1,5 @@
 import './App.scss';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useSearchParams } from 'react-router-dom';
 import { ItemList } from '../ItemList/ItemList';
 import { AddItemsForm } from '../AddItemsForm/AddItemsForm';
 import { Login } from '../Login/Login';
@@ -17,8 +17,15 @@ function App() {
   const [arrNumber, setArrNumber] = useState();
   const [popupVisible, setPopupVisible] = useState(false);
   const [message, setMessage] = useState('');
-  const [fail, setFail] = useState(false);
+  const [warningMessage, setWarningMessage] = useState('');
+  const [stickerArrNum, setStickerArrNum] = useState('');
+  let [searchParams, setSearchParams] = useSearchParams();
 
+  useEffect(() => {
+    const number = searchParams.get('number') ?? arrNumber;
+    setStickerArrNum(number);
+  }, [stickers, arrNumber])
+  
   useEffect(() => {
     checkToken()
       .then(() => {
@@ -31,13 +38,23 @@ function App() {
       .finally(() => setTokenCheck(false));
   },[]);
 
+  const warningMessageHandler = msg => {
+    setWarningMessage(msg);
+    setTimeout(() => {
+      setWarningMessage('');
+    },2500)
+  }
+
   return (
     <div className='App'>
-      <Popup show={popupVisible} fail={fail}/>
+      <div className={`App__warning-msg-container ${!warningMessage && 'App__warning-msg-container_hidden'}` }>
+        <p className={`App__warning-msg`}>{warningMessage}</p>
+      </div>
+      <Popup show={popupVisible} setPopupVisible={setPopupVisible} />
       <DescriptionPopup message={message} setMessage={setMessage}/>
       {tokenCheck && <CSpinner className='spinner' variant='grow'/>}
-    {!tokenCheck && <>
-      {!isLogged && <Login setIsLogged={setIsLogged} setTokenCheck={setTokenCheck} setPopupVisible={setPopupVisible} setFail={setFail}/>}
+      {!tokenCheck && <>
+      {!isLogged && <Login setIsLogged={setIsLogged} setTokenCheck={setTokenCheck} warningMessageHandler={warningMessageHandler}/>}
       {isLogged && <>
         <SideMenu setIsLogged={setIsLogged} 
                   items={stickers} 
@@ -48,12 +65,15 @@ function App() {
           <Route exact path='/' element={<AddItemsForm setStickers={setStickers} 
                                                        setTokenCheck={setTokenCheck} 
                                                        setPopupVisible={setPopupVisible}
-                                                       setMessage={setMessage}/>} />
-          {!!stickers.length && <Route path='/item-list' element={<ItemList values={stickers} 
+                                                       setMessage={setMessage}
+                                                       warningMessageHandler={warningMessageHandler}/>} />
+          {(!!stickers.length && stickerArrNum) && <Route path='/item-list' element={<ItemList values={stickers} 
                                                                             valNum={arrNumber} 
                                                                             setStickers={setStickers} 
                                                                             setPopupVisible={setPopupVisible}
-                                                                            setMessage={setMessage}/>}/>}
+                                                                            setMessage={setMessage}
+                                                                            warningMessageHandler={warningMessageHandler}
+                                                                            />}/>}
         </Routes>
       </>}
     </>}

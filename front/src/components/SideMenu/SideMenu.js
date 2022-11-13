@@ -76,7 +76,7 @@ export const SideMenu = ({ setIsLogged, items, setItems, setArrNumber, setMessag
                       <CIcon customClassName='nav-icon side-menu__nav-icon' 
                              className='side-menu__link-icon' 
                              icon={cilChevronCircleRightAlt} />
-                      {`${item.title} ${item.color} ${item.date}`}
+                      {item.setTitle ? `${item.setTitle} ${item.date}` : item.date}
                     </Link>)
           })}
         </CSidebarNav>

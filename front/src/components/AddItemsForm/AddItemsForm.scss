@@ -5,6 +5,7 @@
   width: 100%;
   margin: auto;
   row-gap: 20px;
+  align-items: center;
   &__input {
     &::placeholder {
       color: #374254;
@@ -23,5 +24,13 @@
   &__header {
     margin-bottom: 50px;
     font-size: 25px;
+  }
+  &__buttons-container {
+    justify-content: space-around;
+    display: flex;
+  }
+  &__button {
+    max-width: 105px;
+    width: 100%;
   }
 }

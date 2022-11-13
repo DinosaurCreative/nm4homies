@@ -2,8 +2,8 @@ import './Item.scss';
 
 export const Item = ({date, title, color, size, number}) => {
   const largeTitle = title.length > 14 ? true : false;
-  const largeSize  = title.length > 16 ? true : false;
-  const largeColor = color.length > 9 ? true : false;
+  const largeSize  = title.length > 20 ? true : false;
+  const largeColor = color.length > 10 ? true : false;
 
   return (
     <div className='item'>
