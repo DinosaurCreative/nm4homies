@@ -29,23 +29,7 @@ module.exports.getSticker = (req, res, next) => {
 };
 
 module.exports.createStickerPack = (req, res, next) => {
-  const {
-    color,
-    quantity,
-    size,
-    title,
-    date,
-    description,
-  } = req.body;
-  
-  StickerPack.create({
-    color,
-    quantity,
-    size,
-    title,
-    date,
-    description,
-  })
+  StickerPack.create({stickersArray: req.body.value, setTitle: req.body.setTitle, date: req.body.date, description: req.body.description})
     .then(stickerPack => res.send({ data: stickerPack }))
     .catch(err => {
       const pathName = err.message.split('`')[1];

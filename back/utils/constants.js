@@ -1,6 +1,6 @@
 const nameLengthErr = 'Длина имени должна быть не менее двух и не более тридцати символов.';
 const badValue = 'Переданы некорректные данные.';
-const stickerPackMissing = 'Файл не найден.';
+const stickerPackMissing = 'Файл не найден. Вероятно был удален ранее';
 const badEmailOrPass = 'Неверный пароль.';
 const wrongPath = 'Не смотри, я не накрашена!';
 const connected = 'Successfully Connected to DB';

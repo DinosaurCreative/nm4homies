@@ -24,12 +24,15 @@ const deleteStickerPackValidation = celebrate({
 
 const createStickerPackValidation = celebrate({
   body: Joi.object().keys({
-    title: Joi.string().required(),
-    color: Joi.string().required(),
+    setTitle: Joi.any(),
     date: Joi.string().required(),
-    size: Joi.string().required(),
-    quantity: Joi.number().required(),
     description: Joi.any(),
+    value: Joi.array().items({
+      title: Joi.string().required(),
+      color: Joi.string().required(),
+      size: Joi.string().required(),
+      quantity: Joi.number().required(),
+  })
   }),
 });
 

@@ -5,12 +5,8 @@ const {
   badEmailOrPass
 } = require('../utils/constants');
 
-const stickerPackSchema = new mongoose.Schema({
+const stickerSchema = new  mongoose.Schema({
   size: {
-    type: String,
-    required: true,
-  },
-  date: {
     type: String,
     required: true,
   },
@@ -26,9 +22,18 @@ const stickerPackSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+});
+
+const stickerPackSchema = new mongoose.Schema({
+  setTitle: mongoose.Schema.Types.Mixed,
   description: {
     type: String,
   },
+  date: {
+    type: String,
+    required: true,
+  },
+  stickersArray: [stickerSchema],
 }, { versionKey: false });
 
 module.exports = mongoose.model('stickerPack', stickerPackSchema);
