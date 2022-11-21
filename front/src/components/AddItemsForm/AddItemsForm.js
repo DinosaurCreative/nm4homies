@@ -6,7 +6,7 @@ import moment from 'moment';
 import { initialValue } from '../../utils/constants';
 import { useNavigate } from 'react-router-dom';
 
-export const AddItemsForm = ({setStickers, setTokenCheck, setPopupVisible, setMessage, warningMessageHandler}) => {
+export const AddItemsForm = ({setStickers, setTokenCheck, setPopupVisible, setMessage, setValuesForPopup}) => {
   const [values, setValues] = useState({
     setTitle: '',
     description: '',
@@ -66,6 +66,7 @@ export const AddItemsForm = ({setStickers, setTokenCheck, setPopupVisible, setMe
       createStickerPack({ ...handleSubmitUntrackedValues(values, currentValue, setTitleAndDescription), date: date.slice(0,6) + '.'})
         .then(()=> {
         setPopupVisible(true);
+        setValuesForPopup([]);
         getAllStickerPacks()
         .then(e => {
           setStickers(e.data.data);
@@ -118,8 +119,16 @@ export const AddItemsForm = ({setStickers, setTokenCheck, setPopupVisible, setMe
         setTitle: '',
         description: '',
       })
-      setMessage(prev => (
-        `${prev} ${currentValue.title} ${currentValue.quantity} шт. ${currentValue.size};   `
+      setValuesForPopup(prev => (
+        [
+          ...prev,
+          {
+            title: currentValue.title,
+            quantity: currentValue.quantity,
+            color: currentValue.color,
+            size: currentValue.size
+          }
+        ]
       ))
       formRef.current.reset();
       return 
@@ -163,16 +172,14 @@ export const AddItemsForm = ({setStickers, setTokenCheck, setPopupVisible, setMe
                        id='size' 
                        >
             <option value=''>Размер</option>
-            <option value='3XL'>4XL</option>
-            <option value='3XL'>3XL</option>
-            <option value='2XL'>2XL</option>
-            <option value='XL'>XL</option>
-            <option value='L'>L</option>
-            <option value='M'>M</option>
             <option value='S'>S</option>
-            <option value='XS'>XS</option>
-            <option value='2XS'>2XS</option>
-            <option value='2XS'>3XS</option>
+            <option value='M'>M</option>
+            <option value='L'>L</option>
+            <option value='XL'>XL</option>
+            <option value='2XL'>2XL</option>
+            <option value='3XL'>3XL</option>
+            <option value='4XL'>4XL</option>
+            <option value='ONE SIZE'>ONE SIZE</option>
           </CFormSelect>
         </CCol>
         {!values.description && <CCol md={10}>

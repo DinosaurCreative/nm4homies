@@ -21,5 +21,23 @@
     position: absolute;
     top: -25px;
     right: -25px;
-  } 
+  }
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    &_item {
+      margin: 0;
+      line-height: initial;
+    }
+  }
+  &__item-list {
+    left: 300px;
+    top: 80px;
+    bottom: auto;
+    width: fit-content;
+    overflow: scroll;
+    padding: 10px 20px;
+  }
 }

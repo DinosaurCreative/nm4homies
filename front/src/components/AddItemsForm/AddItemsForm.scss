@@ -6,6 +6,9 @@
   margin: auto;
   row-gap: 20px;
   align-items: center;
+  @media (max-width: 768px) {
+    margin-top: 70px;
+  } 
   &__input {
     &::placeholder {
       color: #374254;

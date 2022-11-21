@@ -1,5 +1,5 @@
 import './App.scss';
-import { Routes, Route, useSearchParams } from 'react-router-dom';
+import { Routes, Route, useSearchParams, useLocation } from 'react-router-dom';
 import { ItemList } from '../ItemList/ItemList';
 import { AddItemsForm } from '../AddItemsForm/AddItemsForm';
 import { Login } from '../Login/Login';
@@ -20,7 +20,8 @@ function App() {
   const [warningMessage, setWarningMessage] = useState('');
   const [stickerArrNum, setStickerArrNum] = useState('');
   let [searchParams, setSearchParams] = useSearchParams();
-
+  const [valuesForPopup, setValuesForPopup] = useState([]);
+  const location = useLocation();
   useEffect(() => {
     const number = searchParams.get('number') ?? arrNumber;
     setStickerArrNum(number);
@@ -38,6 +39,12 @@ function App() {
       .finally(() => setTokenCheck(false));
   },[]);
 
+useEffect(() => {
+  if(location.pathname !== '/') {
+    setValuesForPopup([]);
+  }
+}, [location])
+
   const warningMessageHandler = msg => {
     setWarningMessage(msg);
     setTimeout(() => {
@@ -51,7 +58,7 @@ function App() {
         <p className={`App__warning-msg`}>{warningMessage}</p>
       </div>
       <Popup show={popupVisible} setPopupVisible={setPopupVisible} />
-      <DescriptionPopup message={message} setMessage={setMessage}/>
+      <DescriptionPopup message={message} setMessage={setMessage} elements={valuesForPopup}/>
       {tokenCheck && <CSpinner className='spinner' variant='grow'/>}
       {!tokenCheck && <>
       {!isLogged && <Login setIsLogged={setIsLogged} setTokenCheck={setTokenCheck} warningMessageHandler={warningMessageHandler}/>}
@@ -66,7 +73,8 @@ function App() {
                                                        setTokenCheck={setTokenCheck} 
                                                        setPopupVisible={setPopupVisible}
                                                        setMessage={setMessage}
-                                                       warningMessageHandler={warningMessageHandler}/>} />
+                                                       warningMessageHandler={warningMessageHandler}
+                                                       setValuesForPopup={setValuesForPopup}/>} />
           {(!!stickers.length && stickerArrNum) && <Route path='/item-list' element={<ItemList values={stickers} 
                                                                             valNum={arrNumber} 
                                                                             setStickers={setStickers} 

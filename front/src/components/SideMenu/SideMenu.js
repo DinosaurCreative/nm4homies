@@ -2,11 +2,11 @@ import './SideMenu.scss';
 import { CButton, CSidebar, CSidebarBrand, CSidebarNav,  CSidebarToggler } from '@coreui/react';
 import { Link, useNavigate } from 'react-router-dom';
 import CIcon from '@coreui/icons-react';
-import { cilHamburgerMenu, cilChevronCircleRightAlt} from '@coreui/icons';
+import { cilHamburgerMenu} from '@coreui/icons';
 import { useState } from 'react';
 import { signout } from '../../api/api';
 
-export const SideMenu = ({ setIsLogged, items, setItems, setArrNumber, setMessage}) => {
+export const SideMenu = ({ setIsLogged, items, setArrNumber, setMessage}) => {
   const [menuHidden, setMenuHidden] = useState(true);
   const navigate = useNavigate();
   const hideMenuHandler = (e) => {
@@ -49,20 +49,17 @@ export const SideMenu = ({ setIsLogged, items, setItems, setArrNumber, setMessag
   };
   return (  
     <>
-    <CSidebarToggler className={`side-menu side-menu__open-btn no-print ${!menuHidden && 'side-menu__hidden'} no-print` } onClick={hideMenuHandler}>
+    <CSidebarToggler className={`side-menu side-menu__open-btn no-print  no-print` } onClick={hideMenuHandler}>
       <CIcon size='xxl' className='no-print' icon={cilHamburgerMenu} id='open'/>
     </CSidebarToggler>
     <div className={`side-menu__background no-print ${menuHidden && 'side-menu__background_hidden'}`} id='background'>
       <CSidebar className={`side-menu ${menuHidden && 'side-menu__hidden'}`}>
         <CSidebarBrand>навигатор</CSidebarBrand>
-        <CSidebarNav className='side-menu__nav'>
+        <CSidebarNav className={`side-menu__nav ${menuHidden && 'side-menu__nav_hidden'}`}>
           <Link to='/' 
                 onClick={hideMenuHandler} 
                 name='link' 
                 className='side-menu__link'>
-                  <CIcon customClassName='nav-icon side-menu__nav-icon' 
-                         className='side-menu__link-icon' 
-                         icon={cilChevronCircleRightAlt} />
                          Создать стикеры
           </Link>  
           {items.map((item, i) => {
@@ -73,9 +70,6 @@ export const SideMenu = ({ setIsLogged, items, setItems, setArrNumber, setMessag
                           id={i}
                           items={item}
                           className='side-menu__link' >
-                      <CIcon customClassName='nav-icon side-menu__nav-icon' 
-                             className='side-menu__link-icon' 
-                             icon={cilChevronCircleRightAlt} />
                       {item.setTitle ? `${item.setTitle} ${item.date}` : item.date}
                     </Link>)
           })}

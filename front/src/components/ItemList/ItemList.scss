@@ -2,8 +2,8 @@
   display: grid;
   grid-template-columns: repeat(3, 265px);
   height: fit-content;
-  grid-column-gap: 1px;
-  grid-row-gap: 1px;
+  grid-column-gap: 0;
+  grid-row-gap: 0;
   justify-content: center;
   margin: auto;
   &__button-container {

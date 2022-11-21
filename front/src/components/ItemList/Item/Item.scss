@@ -1,5 +1,5 @@
 .item {
-  height: 158.7px;
+  height: 159.3px;
   line-height: normal;
   text-align: left;
   &__content {
@@ -37,10 +37,9 @@
     align-self: start;
     margin-bottom: 0;
     &_large {
-      align-self: flex-end;
+      align-self: flex-start;
       padding-bottom: 5.5px;
       font-size: 15.5px;
-      padding-left: 24px;
     }
   };
   &__size {
