@@ -87,3 +87,7 @@ $sidebar-width: 0 !default;
   }
 
 }
+
+.sidebar:not(.sidebar-end):not(.show) {
+  margin-left: 0;
+}
