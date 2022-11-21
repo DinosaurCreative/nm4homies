@@ -23,7 +23,7 @@ mongoose.connect(dataBaseAdress, {
 
 app.use('/', stickerRouter);
 
-app.use('*', /* auth, */ () => {
+app.use('*', auth, () => {
   throw new NotFoundError(wrongPath);
 });
 
