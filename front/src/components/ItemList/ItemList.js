@@ -87,7 +87,19 @@ export const ItemList = ({ values, valNum, setStickers, setPopupVisible, setMess
         <CButton className='grid__button' color="info" onClick={handlePrint}>Печатать</CButton>
       </div>
       <div className='grid'>
-        {separate.map((item, index) => prepareItems(item, index))}
+        {separate.map((item, index) => {
+          if(index % 21 === 0) {
+            return (
+            <>
+              <div className='grid__item-container' />
+              <div className='grid__item-container' />
+              <div className='grid__item-container' />
+              {prepareItems(item, index)}
+            </>
+            )
+          }
+          return prepareItems(item, index);
+        })}
       </div>
     </div>
   );
