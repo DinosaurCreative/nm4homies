@@ -88,7 +88,7 @@ export const ItemList = ({ values, valNum, setStickers, setPopupVisible, setMess
       </div>
       <div className='grid'>
         {separate.map((item, index) => {
-          if(index % 21 === 0) {
+          if(index % 21 === 0 && index !== 0) {
             return (
             <>
               <div className='grid__item-container' />
