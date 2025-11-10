@@ -10,13 +10,22 @@ export const Login = ({setIsLogged, setTokenCheck, warningMessageHandler}) => {
     setTokenCheck(true);
     login(pass)
     .then((response) => {
+      console.log('Login response:', response.data); // Логируем ответ
+      
       // Сохраняем токен из ответа
-      if (response.data.token) {
-        setToken(response.data.token);
+      const token = response.data.token || response.data.data?.token;
+      if (token) {
+        console.log('Saving token to localStorage');
+        setToken(token);
+      } else {
+        console.error('No token in response:', response.data);
       }
       setIsLogged(true);
     })
-    .catch((err) => warningMessageHandler(err.response?.data?.message || 'Ошибка входа'))
+    .catch((err) => {
+      console.error('Login error:', err);
+      warningMessageHandler(err.response?.data?.message || 'Ошибка входа');
+    })
     .finally(() => setTokenCheck(false));
   }
 

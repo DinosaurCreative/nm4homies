@@ -113,10 +113,20 @@ module.exports.login = (req, res, next) => {
                 path: "/"
             };
 
-            res.cookie("_id", token, cookieOptions).send({ 
-                ...user.toObject(), 
-                token // Добавляем токен в ответ
+            // Преобразуем user в объект и добавляем токен
+            const userObj = user.toObject();
+            const responseData = {
+                _id: userObj._id,
+                email: userObj.email,
+                token: token // Явно добавляем токен
+            };
+
+            console.log('Login success, sending token:', { 
+                userId: userObj._id, 
+                hasToken: !!token 
             });
+
+            res.cookie("_id", token, cookieOptions).send(responseData);
         })
         .catch((err) => {
             console.log(err);
