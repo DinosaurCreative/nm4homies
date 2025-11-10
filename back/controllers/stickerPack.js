@@ -96,16 +96,19 @@ module.exports.login = (req, res, next) => {
                 expiresIn: "7d"
             });
 
+            // Определяем продакшен: Vercel всегда использует HTTPS
             const isProduction =
                 process.env.NODE_ENV === "production" ||
                 req.secure ||
-                req.headers["x-forwarded-proto"] === "https";
+                req.headers["x-forwarded-proto"] === "https" ||
+                req.headers["host"]?.includes("vercel.app");
 
             res.cookie("_id", token, {
-                maxAge: 3600000 * 24 * 7,
+                maxAge: 3600000 * 24 * 7, // 7 дней
                 httpOnly: true,
-                sameSite: isProduction ? "None" : "Lax",
-                secure: isProduction
+                sameSite: isProduction ? "None" : "Lax", // None для cross-domain (Vercel)
+                secure: isProduction, // true для HTTPS
+                path: "/" // Важно для cross-domain cookies
             }).send(user);
         })
         .catch((err) => {
@@ -160,11 +163,13 @@ module.exports.signOut = (req, res, next) => {
     const isProduction =
         process.env.NODE_ENV === "production" ||
         req.secure ||
-        req.headers["x-forwarded-proto"] === "https";
+        req.headers["x-forwarded-proto"] === "https" ||
+        req.headers["host"]?.includes("vercel.app");
 
     res.clearCookie("_id", {
         sameSite: isProduction ? "None" : "Lax",
         secure: isProduction,
-        httpOnly: true
+        httpOnly: true,
+        path: "/"
     }).send({ message: "Куки удалены" });
 };
