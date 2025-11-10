@@ -24,6 +24,9 @@ const myFetch = async (path, options) => {
     // Добавляем токен в заголовок Authorization, если он есть
     if (token) {
         headers.Authorization = `Bearer ${token}`;
+        console.log(`Request to ${path}: Token added to Authorization header`);
+    } else {
+        console.warn(`Request to ${path}: No token in localStorage!`);
     }
 
     const response = await axios.request({

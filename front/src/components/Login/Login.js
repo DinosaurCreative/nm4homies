@@ -14,9 +14,20 @@ export const Login = ({setIsLogged, setTokenCheck, warningMessageHandler}) => {
       
       // Сохраняем токен из ответа
       const token = response.data.token || response.data.data?.token;
+      console.log('Extracted token:', token ? token.substring(0, 20) + '...' : 'NOT FOUND');
+      
       if (token) {
         console.log('Saving token to localStorage');
         setToken(token);
+        
+        // Проверяем, что токен сохранился
+        setTimeout(() => {
+          const savedToken = localStorage.getItem("authToken");
+          console.log('Token verification - saved:', savedToken ? 'YES' : 'NO');
+          if (savedToken) {
+            console.log('Saved token matches:', savedToken === token);
+          }
+        }, 100);
       } else {
         console.error('No token in response:', response.data);
       }

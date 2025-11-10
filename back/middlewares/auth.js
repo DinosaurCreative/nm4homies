@@ -24,20 +24,37 @@ module.exports = (req, res, next) => {
     const authHeader = req.headers.authorization;
     let token = extractTokenFromHeader(authHeader);
 
+    // Логируем для отладки
+    console.log("Auth check:", {
+        path: req.path,
+        hasAuthHeader: !!authHeader,
+        authHeader: authHeader
+            ? authHeader.substring(0, 20) + "..."
+            : "missing",
+        hasToken: !!token,
+        hasCookie: !!req.headers.cookie
+    });
+
     // Если нет в заголовке, пробуем из cookie (для обратной совместимости)
     if (!token) {
         const cookieHeader = req.headers.cookie;
         token = extractTokenFromCookie(cookieHeader);
+        if (token) {
+            console.log("Token found in cookie");
+        }
     }
 
     if (!token) {
+        console.log("No token found in Authorization header or cookie");
         return next(new UnauthorizedError("Авторизуйтесь"));
     }
 
     let payload;
     try {
         payload = jwt.verify(token, devSecretKey);
+        console.log("Token verified successfully, userId:", payload._id);
     } catch (err) {
+        console.log("Token verification failed:", err.message);
         return next(new UnauthorizedError("Ошибка авторизации"));
     }
 

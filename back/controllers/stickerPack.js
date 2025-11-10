@@ -97,11 +97,22 @@ module.exports.login = (req, res, next) => {
             });
 
             // Определяем продакшен: Vercel всегда использует HTTPS
+            // Для Vercel всегда продакшен (HTTPS + cross-domain)
             const isProduction =
                 process.env.NODE_ENV === "production" ||
                 req.secure ||
                 req.headers["x-forwarded-proto"] === "https" ||
-                req.headers["host"]?.includes("vercel.app");
+                req.headers["host"]?.includes("vercel.app") ||
+                req.headers["origin"]?.includes("vercel.app");
+
+            // Логируем для отладки
+            console.log('Login - environment check:', {
+                NODE_ENV: process.env.NODE_ENV,
+                host: req.headers["host"],
+                origin: req.headers["origin"],
+                xForwardedProto: req.headers["x-forwarded-proto"],
+                isProduction: isProduction
+            });
 
             // Возвращаем токен в JSON ответе (для cross-domain без cookies)
             // Также устанавливаем cookie для обратной совместимости
