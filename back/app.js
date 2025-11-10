@@ -19,7 +19,11 @@ mongoose.connect(dataBaseAdress, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 }).then(() => console.log(connected))
-  .catch(() => console.log(notConnected));
+  .catch((err) => {
+    console.log(notConnected);
+    console.error('Ошибка подключения к БД:', err.message);
+    console.error('Проверьте строку подключения в utils/config.js');
+  });
 
 app.use('/', stickerRouter);
 
@@ -30,6 +34,8 @@ app.use('*', auth, () => {
 app.use(errors());
 app.use(errorHandler);
 
-app.listen(PORT, () => {
-  console.log(`Подключено к порту ${PORT}.`);
+// Vercel использует process.env.PORT автоматически, но для локальной разработки используем PORT из config
+const port = process.env.PORT || PORT;
+app.listen(port, () => {
+  console.log(`Подключено к порту ${port}.`);
 });
