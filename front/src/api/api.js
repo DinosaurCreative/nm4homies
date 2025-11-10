@@ -1,12 +1,35 @@
 import axios from "axios";
 const mainUrl = process.env.REACT_APP_MAIN_URL || "http://localhost:3000";
 
+// Получаем токен из localStorage
+const getToken = () => {
+    return localStorage.getItem("authToken");
+};
+
+// Сохраняем токен в localStorage
+export const setToken = (token) => {
+    if (token) {
+        localStorage.setItem("authToken", token);
+    } else {
+        localStorage.removeItem("authToken");
+    }
+};
+
 const myFetch = async (path, options) => {
+    const token = getToken();
+    const headers = {};
+
+    // Добавляем токен в заголовок Authorization, если он есть
+    if (token) {
+        headers.Authorization = `Bearer ${token}`;
+    }
+
     const response = await axios.request({
         baseURL: mainUrl + path,
         data: options?.body,
         method: options?.method,
-        withCredentials: true,
+        headers,
+        withCredentials: true, // Оставляем для обратной совместимости
         credentials: "include"
     });
 

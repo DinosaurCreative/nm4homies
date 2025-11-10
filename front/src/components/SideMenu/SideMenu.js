@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import CIcon from '@coreui/icons-react';
 import { cilHamburgerMenu} from '@coreui/icons';
 import { useState } from 'react';
-import { signout } from '../../api/api';
+import { signout, setToken } from '../../api/api';
 
 export const SideMenu = ({ setIsLogged, items, setArrNumber, setMessage}) => {
   const [menuHidden, setMenuHidden] = useState(true);
@@ -25,11 +25,14 @@ export const SideMenu = ({ setIsLogged, items, setArrNumber, setMessage}) => {
   const signOutHandler = () => {
     signout()
       .then(() => {
+        setToken(null); // Удаляем токен из localStorage
         setIsLogged(false);
         navigate('/');
       })
       .catch((e) => {
         console.log(e);
+        setToken(null); // Удаляем токен даже при ошибке
+        setIsLogged(false);
       });
   };
   

@@ -1,8 +1,7 @@
 import './Login.scss'
 import { CFormInput, CForm, CCol, CButton, CRow } from '@coreui/react'
 import { useState } from 'react'
-import { login } from '../../api/api'
-
+import { login, setToken } from '../../api/api'
 
 export const Login = ({setIsLogged, setTokenCheck, warningMessageHandler}) => {
   const [pass, setPass] = useState('');
@@ -10,8 +9,14 @@ export const Login = ({setIsLogged, setTokenCheck, warningMessageHandler}) => {
     e.preventDefault();
     setTokenCheck(true);
     login(pass)
-    .then(() => setIsLogged(true))
-    .catch((err) => warningMessageHandler(err.response.data.message))
+    .then((response) => {
+      // Сохраняем токен из ответа
+      if (response.data.token) {
+        setToken(response.data.token);
+      }
+      setIsLogged(true);
+    })
+    .catch((err) => warningMessageHandler(err.response?.data?.message || 'Ошибка входа'))
     .finally(() => setTokenCheck(false));
   }
 

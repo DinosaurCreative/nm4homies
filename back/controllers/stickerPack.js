@@ -103,22 +103,20 @@ module.exports.login = (req, res, next) => {
                 req.headers["x-forwarded-proto"] === "https" ||
                 req.headers["host"]?.includes("vercel.app");
 
+            // Возвращаем токен в JSON ответе (для cross-domain без cookies)
+            // Также устанавливаем cookie для обратной совместимости
             const cookieOptions = {
-                maxAge: 3600000 * 24 * 7, // 7 дней
+                maxAge: 3600000 * 24 * 7,
                 httpOnly: true,
-                sameSite: isProduction ? "None" : "Lax", // None для cross-domain (Vercel)
-                secure: isProduction, // true для HTTPS
-                path: "/" // Важно для cross-domain cookies
+                sameSite: isProduction ? "None" : "Lax",
+                secure: isProduction,
+                path: "/"
             };
 
-            // Логируем для отладки
-            console.log('Setting cookie with options:', {
-                sameSite: cookieOptions.sameSite,
-                secure: cookieOptions.secure,
-                origin: req.headers.origin
+            res.cookie("_id", token, cookieOptions).send({ 
+                ...user.toObject(), 
+                token // Добавляем токен в ответ
             });
-
-            res.cookie("_id", token, cookieOptions).send(user);
         })
         .catch((err) => {
             console.log(err);
