@@ -22,18 +22,20 @@ function extractTokenFromHeader(authHeader) {
 module.exports = (req, res, next) => {
     // Сначала пробуем получить токен из заголовка Authorization (приоритет)
     const authHeader = req.headers.authorization;
+    const cookieHeader = req.headers.cookie;
     let token = extractTokenFromHeader(authHeader);
 
-    // Логируем для отладки
-    console.log("Auth check:", {
-        path: req.path,
-        hasAuthHeader: !!authHeader,
-        authHeader: authHeader
-            ? authHeader.substring(0, 20) + "..."
-            : "missing",
-        hasToken: !!token,
-        hasCookie: !!req.headers.cookie
-    });
+    // Логируем для отладки - ВСЕГДА, даже для OPTIONS
+    console.log("=== AUTH CHECK ===");
+    console.log("Path:", req.path);
+    console.log("Method:", req.method);
+    console.log("Authorization header:", authHeader || "MISSING");
+    console.log("Cookie header:", cookieHeader || "MISSING");
+    console.log(
+        "Extracted token from header:",
+        token ? token.substring(0, 20) + "..." : "NONE"
+    );
+    console.log("==================");
 
     // Если нет в заголовке, пробуем из cookie (для обратной совместимости)
     if (!token) {

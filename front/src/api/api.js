@@ -24,15 +24,26 @@ const myFetch = async (path, options) => {
     // Добавляем токен в заголовок Authorization, если он есть
     if (token) {
         headers.Authorization = `Bearer ${token}`;
-        console.log(`Request to ${path}: Token added to Authorization header`);
+        console.log(`=== REQUEST TO ${path} ===`);
+        console.log(`Token found: YES`);
+        console.log(
+            `Authorization header: Bearer ${token.substring(0, 20)}...`
+        );
+        console.log(`Full URL: ${mainUrl}${path}`);
     } else {
-        console.warn(`Request to ${path}: No token in localStorage!`);
+        console.warn(`=== REQUEST TO ${path} ===`);
+        console.warn(`Token found: NO`);
+        console.warn(
+            `localStorage.getItem("authToken"):`,
+            localStorage.getItem("authToken")
+        );
+        console.warn(`Full URL: ${mainUrl}${path}`);
     }
 
     const response = await axios.request({
         baseURL: mainUrl + path,
         data: options?.body,
-        method: options?.method,
+        method: options?.method || "GET",
         headers,
         withCredentials: true, // Оставляем для обратной совместимости
         credentials: "include"
