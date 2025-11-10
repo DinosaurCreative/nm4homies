@@ -1,22 +1,13 @@
 const allowedMethods = 'GET,HEAD,PUT,PATCH,POST,DELETE';
-const allowedCors = [
-  'http://localhost:3000',
-  'http://localhost:3002',
-  'https://localhost:3000',
-  'http://localhost:3001',
-  'https://localhost:3001',
-  'https://nm4homies-dinosaurcreative.vercel.app',
-  'https://nm4homies.vercel.app',
-  'https://nm4h.vercel.app',
-  'https://nm4h-dinosaurcreative.vercel.app'
-];
 
+// Упрощенный CORS - разрешаем все origins (для pet-проекта)
 module.exports = (req, res, next) => {
   const { method } = req;
   const requestHeaders = req.headers['access-control-request-headers'];
   const { origin } = req.headers;
 
-  if (allowedCors.includes(origin)) {
+  // Разрешаем все origins
+  if (origin) {
     res.header('Access-Control-Allow-Origin', origin);
     res.header('Access-Control-Allow-Credentials', 'true');
   }
