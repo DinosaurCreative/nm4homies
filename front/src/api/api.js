@@ -8,6 +8,7 @@ const getToken = () => {
 
 // Сохраняем токен в localStorage
 export const setToken = (token) => {
+    console.log("token", token);
     if (token) {
         localStorage.setItem("authToken", token);
         console.log("Token saved to localStorage");
