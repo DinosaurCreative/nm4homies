@@ -1,4 +1,4 @@
-@import './_breakpoints.scss';
+@import "./_breakpoints.scss";
 @import "font";
 @import "../node_modules/@coreui/coreui/scss/coreui.scss";
 @import "./normalize.css";
@@ -63,7 +63,6 @@
   box-sizing: border-box;
 }
 
-
 [type="search"] {
   -webkit-appearance: searchfield;
 }
@@ -82,7 +81,7 @@ label {
 }
 
 .default-btn {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   width: 10em;
   background: #1773a1;
   border-radius: 5px;
@@ -120,19 +119,31 @@ label {
   border: 0;
   background: 0 0 !important;
   color: #ff434b !important;
-  text-shadow: 0 -1px 0 #CD0707, -1px 0 0 #CD0707, 0 1px 0 #CD0707, 1px 0 0 #CD0707 !important;
+  text-shadow:
+    0 -1px 0 #cd0707,
+    -1px 0 0 #cd0707,
+    0 1px 0 #cd0707,
+    1px 0 0 #cd0707 !important;
   transition: all 0.2s ease-in;
   padding: 0 4px;
 
   &:hover {
     cursor: pointer;
     color: #bf2200 !important;
-    text-shadow: 0 -1px 0 #AA0101, -1px 0 0 #AA0101, 0 1px 0 #AA0101, 1px 0 0 #AA0101 !important;
+    text-shadow:
+      0 -1px 0 #aa0101,
+      -1px 0 0 #aa0101,
+      0 1px 0 #aa0101,
+      1px 0 0 #aa0101 !important;
   }
 
   &:active {
     color: #9b0018 !important;
-    text-shadow: 0 -1px 0 #d10101, -1px 0 0 #d10101, 0 1px 0 #d10101, 1px 0 0 #d10101 !important;
+    text-shadow:
+      0 -1px 0 #d10101,
+      -1px 0 0 #d10101,
+      0 1px 0 #d10101,
+      1px 0 0 #d10101 !important;
     outline: none;
   }
 
@@ -146,7 +157,7 @@ label {
   width: 24px;
   font-size: 16px;
   color: rgba(63, 155, 191, 0.8);
-  background-color: rgba(0, 0, 0, 0.0);
+  background-color: rgba(0, 0, 0, 0);
   border: 0px solid #000000;
   padding: 0px 5px 0px 0px;
   outline: none;
@@ -194,7 +205,6 @@ label {
     width: 100%;
   }
 }
-
 
 //Arrow icons (pagination, progress widget, etc)
 .body-arrow {

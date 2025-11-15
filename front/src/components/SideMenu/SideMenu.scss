@@ -5,13 +5,13 @@ $sidebar-width: 0 !default;
   top: 0;
   bottom: 0;
   left: 0;
+  z-index: 3;
 
   width: 300px;
-  z-index: 1;
   &__hidden {
     width: 0;
     left: -40px;
-  };
+  }
   &__open-btn {
     width: 3em;
     height: 3em;
@@ -19,8 +19,8 @@ $sidebar-width: 0 !default;
   &__open-btn {
     margin: 30px auto auto 30px;
     justify-content: left;
-    display: flex
-  };
+    display: flex;
+  }
   &__background {
     position: absolute;
     top: 0;
@@ -29,19 +29,19 @@ $sidebar-width: 0 !default;
     right: 0;
     &_hidden {
       width: 0;
-    };
-  };
+    }
+  }
   &__link {
     display: flex;
     color: #fff;
     margin-bottom: 20px;
-    transition: all .3s;
+    transition: all 0.3s;
     text-decoration: none;
     text-align: left;
     &:hover {
       color: #fff;
       opacity: 60%;
-    };
+    }
     &::before {
       content: "";
       padding-left: 50px;
@@ -62,7 +62,7 @@ $sidebar-width: 0 !default;
     &__link-icon {
       margin: auto 15px auto;
     }
-  };
+  }
   &__nav {
     margin-left: 20px;
     margin-top: 30px;
@@ -78,14 +78,13 @@ $sidebar-width: 0 !default;
   }
   &__logout-btn_hidden {
     opacity: 0;
-    transition: all .2s;
+    transition: all 0.2s;
   }
   &__nav-icon {
     margin-top: auto;
     margin-bottom: auto;
     color: #009cb6;
   }
-
 }
 
 .sidebar:not(.sidebar-end):not(.show) {

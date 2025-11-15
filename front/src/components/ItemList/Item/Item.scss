@@ -8,14 +8,14 @@
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-  };
+  }
   &__inner-content {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     font-size: 13px;
     height: fit-content;
-  };
+  }
   &__title {
     font-weight: 500;
     font-size: 20px;
@@ -26,9 +26,9 @@
     &_large {
       letter-spacing: -0.5px;
       line-height: 1.28;
-      font-size: 18px
+      font-size: 18px;
     }
-  };
+  }
   &__color {
     grid-area: color;
     font-weight: 600;
@@ -41,7 +41,7 @@
       padding-bottom: 5.5px;
       font-size: 15.5px;
     }
-  };
+  }
   &__size {
     font-weight: 800;
     font-size: 40px;
@@ -52,11 +52,11 @@
     &_large {
       align-self: end;
     }
-  };
+  }
   &__number {
     margin-bottom: 0;
     padding-left: 1px;
-  };
+  }
   &__date {
     margin-bottom: 0;
   }

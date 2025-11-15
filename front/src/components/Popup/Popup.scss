@@ -1,12 +1,12 @@
 .popup {
-  background-color: rgba(0, 0, 0, 0.736); 
+  background-color: rgba(0, 0, 0, 0.736);
   position: fixed;
   border-radius: 15px;
   left: 450px;
   padding: 10px;
   bottom: -60px;
-  transition: all .3s ease-in-out;
-  
+  transition: all 0.3s ease-in-out;
+
   &_visible {
     bottom: 60px;
   }

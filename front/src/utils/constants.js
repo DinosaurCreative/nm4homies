@@ -1,6 +1,6 @@
 export const initialValue = {
-  title: '',
-  color: '',
-  size: '',
-  quantity: '',
+  title: "",
+  color: "",
+  size: "",
+  quantity: ""
 };

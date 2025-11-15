@@ -8,10 +8,28 @@
   align-items: center;
   @media (max-width: 768px) {
     margin-top: 70px;
-  } 
+  }
+  &__select-col,
+  &__input-col,
+  &__textarea-col {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    option[disabled] {
+      color: #6c757d;
+      font-style: italic;
+    }
+  }
+  &__select-col-option {
+    color: red !important;
+    color: #5a5b5c !important;
+    opacity: 0.5 !important;
+  }
   &__input {
     &::placeholder {
-      color: #374254;
+      color: #5a5b5c !important;
+      opacity: 0.5 !important;
     }
   }
   &__error-message-container {
@@ -31,6 +49,7 @@
   &__buttons-container {
     justify-content: space-around;
     display: flex;
+    gap: 40px;
   }
   &__button {
     max-width: 105px;

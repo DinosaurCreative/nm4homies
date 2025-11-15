@@ -1,43 +1,110 @@
 .description-popup {
-  border: 1px solid rgba(44, 56, 74, 0.95);
   position: fixed;
   min-height: 100px;
   width: 300px;
   left: 50px;
   bottom: 120px;
   border-radius: 14px;
-  padding: 20px ;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   background: #eaedef;
   z-index: 2;
   justify-content: space-around;
+  cursor: move;
+  user-select: none;
+
+  &__drag-handle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    cursor: grab;
+    z-index: 1;
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+
+  &__minimize-btn {
+    position: absolute;
+    top: 13px;
+    left: 13px;
+    z-index: 4;
+    cursor: pointer;
+    min-width: 30px;
+    height: 30px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+    border-radius: 10px;
+  }
+
+  &__minimized {
+    width: 50px;
+    height: 50px;
+    min-height: 50px;
+    padding: 0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+    .description-popup__minimize-btn {
+      position: static;
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+      margin: 0;
+    }
+  }
+
   &__message {
     margin: 0;
     color: rgba(44, 56, 74, 0.95);
+    position: relative;
+    z-index: 2;
   }
+
   &__close-btn {
     color: red;
     position: absolute;
-    top: -25px;
-    right: -25px;
+    top: 10px;
+    right: 10px;
+    z-index: 4;
+    cursor: pointer;
+    pointer-events: auto;
   }
+
   &__container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-bottom: 10px;
+    margin-top: 35px;
+    position: relative;
+    z-index: 2;
+    gap: 15px;
+
     &_item {
       margin: 0;
       line-height: initial;
+      font-weight: 600;
+      padding: 0 20px;
     }
   }
+
   &__item-list {
     left: 300px;
     top: 80px;
     bottom: auto;
     width: fit-content;
     overflow: scroll;
-    padding: 10px 20px;
+    padding: 10px;
   }
 }

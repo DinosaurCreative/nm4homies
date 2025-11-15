@@ -16,10 +16,10 @@
     justify-content: center;
     column-gap: 120px;
     margin: 40px auto 50px;
-  };
+  }
   &__button {
     width: 120px;
-  };
+  }
   &__container {
     display: flex;
     flex-direction: column;
@@ -27,8 +27,9 @@
   }
 }
 
-@media print {    
-  .no-print, .no-print * {
-      display: none !important;
+@media print {
+  .no-print,
+  .no-print * {
+    display: none !important;
   }
 }
