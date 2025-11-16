@@ -12,7 +12,6 @@ function extractTokenFromCookie(cookieHeader) {
 
 function extractTokenFromHeader(authHeader) {
     if (!authHeader) return null;
-    // Поддерживаем формат "Bearer token" или просто "token"
     if (authHeader.startsWith("Bearer ")) {
         return authHeader.substring(7);
     }
@@ -20,12 +19,10 @@ function extractTokenFromHeader(authHeader) {
 }
 
 module.exports = (req, res, next) => {
-    // Сначала пробуем получить токен из заголовка Authorization (приоритет)
     const authHeader = req.headers.authorization;
     const cookieHeader = req.headers.cookie;
     let token = extractTokenFromHeader(authHeader);
 
-    // Логируем для отладки - ВСЕГДА, даже для OPTIONS
     console.log("=== AUTH CHECK ===");
     console.log("Path:", req.path);
     console.log("Method:", req.method);
@@ -37,7 +34,6 @@ module.exports = (req, res, next) => {
     );
     console.log("==================");
 
-    // Если нет в заголовке, пробуем из cookie (для обратной совместимости)
     if (!token) {
         const cookieHeader = req.headers.cookie;
         token = extractTokenFromCookie(cookieHeader);

@@ -17,6 +17,9 @@ export const ItemList = ({
   let [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const [data, setData] = useState({});
+  const searchParamsId = searchParams.get("id");
+  const searchParamsNumber = searchParams.get("number");
+  
   const handlePrint = () => {
     setMessage("");
     window.print();
@@ -24,11 +27,13 @@ export const ItemList = ({
 
   useEffect(() => {
     if (values.length === 0) {
-      searchParams.delete("id");
-      searchParams.delete("number");
+      const newParams = new URLSearchParams(searchParams);
+      newParams.delete("id");
+      newParams.delete("number");
+      setSearchParams(newParams);
       navigate("/");
     }
-  }, []);
+  }, [values.length, navigate, setSearchParams, searchParams]);
 
   const handleDelete = () => {
     setMessage("");
@@ -47,18 +52,21 @@ export const ItemList = ({
   };
 
   useEffect(() => {
-    const id = searchParams.get("id") ?? values[valNum]?._id;
-    const number = searchParams.get("number") ?? valNum;
+    const id = searchParamsId ?? values[valNum]?._id;
+    const number = searchParamsNumber ?? valNum;
     if (id === "undefined") {
       return navigate("/");
     }
-    setMessage(values[valNum]?.description ?? values[number]?.description);
-    setSearchParams({ id, number: valNum || number });
+    
+    if (searchParamsId !== id || searchParamsNumber !== String(valNum || number)) {
+      setMessage(values[valNum]?.description ?? values[number]?.description);
+      setSearchParams({ id, number: valNum || number });
+    }
     setData({
       id,
       number: number || valNum
     });
-  }, [values, valNum]);
+  }, [values, valNum, navigate, setMessage, setSearchParams, searchParamsId, searchParamsNumber]);
 
   const separate = useMemo(() => {
     const response = [];

@@ -38,7 +38,7 @@ export const AddItemsForm = ({
 
   useEffect(() => {
     setMessage("");
-  }, []);
+  }, [setMessage]);
 
   const setValuesHandler = async () => {
     setValues(prev => {
