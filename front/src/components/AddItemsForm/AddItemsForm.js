@@ -191,7 +191,7 @@ export const AddItemsForm = ({
         id="form"
         ref={formRef}
       >
-        <CCol md={1}>
+        <CCol md={10}>
           <CHeaderBrand className="add-items-form__header">
             Создание стикеров
           </CHeaderBrand>
